@@ -92,7 +92,7 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", courses=" + courses + ", details=" + details + "]";
+				 + ", details=" + details + ",courses="+ courses + "]";
 	}
 
 	// add convenience methods for bi-directional relationship

@@ -61,7 +61,7 @@ public class TeacherDetails {
 
 	@Override
 	public String toString() {
-		return "TeacherDetails [ID=" + ID + ", channel=" + channel + ", hobby=" + hobby + ", teacher=" + teacher + "]";
+		return "TeacherDetails [ID=" + ID + ", channel=" + channel + ", hobby=" + hobby + "]";
 	}
 
 }
