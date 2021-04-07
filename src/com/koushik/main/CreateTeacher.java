@@ -25,7 +25,7 @@ public class CreateTeacher {
 //			session.save(javaTeacher);
 			Teacher koushik = session.get(Teacher.class, 1);
 			System.out.println("Instructor details: "+koushik);
-//			System.out.println(koushik.getCourses());
+			System.out.println(koushik.getCourses());
 			session.getTransaction().commit();
 		}catch(Exception e) {
 			e.printStackTrace();
