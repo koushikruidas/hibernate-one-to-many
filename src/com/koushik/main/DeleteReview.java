@@ -9,8 +9,7 @@ import com.koushik.entity.Review;
 import com.koushik.entity.Teacher;
 import com.koushik.entity.TeacherDetails;
 
-public class DeleteCourse {
-
+public class DeleteReview {
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
 									.addAnnotatedClass(Teacher.class)
@@ -21,17 +20,16 @@ public class DeleteCourse {
 		Session session = factory.getCurrentSession();
 		try {
 			session.beginTransaction();
-			Course tableTennis = session.get(Course.class, 10);
-			System.out.println("Course: "+tableTennis);
-			System.out.println("Deleting It");
-			session.delete(tableTennis);
+			Review badReview = session.get(Review.class, 21);
+			
+			// Uni-directional delete
+			session.delete(badReview);
 			session.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			session.close();
 			factory.close();
 		}
 	}
-
 }

@@ -1,13 +1,18 @@
 package com.koushik.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +32,10 @@ public class Course {
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "instructor_id")
 	private Teacher teachingAssistant;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "courseId",
+			cascade = CascadeType.ALL)
+	private List<Review> review;
 
 	public Course(String courseName, int courseLength) {
 		this.courseName = courseName;
@@ -60,6 +69,22 @@ public class Course {
 		this.teachingAssistant = teachingAssistant;
 	}
 
+	public List<Review> getReview() {
+		return review;
+	}
+
+	public void setReview(List<Review> review) {
+		this.review = review;
+	}
+	
+	public void add(Review tempReview) {
+		if(review == null) {
+			review = new ArrayList<Review>();
+		}
+		review.add(tempReview);
+		tempReview.setCourseId(this);
+	}
+	
 	@Override
 	public String toString() {
 		return "Course [id=" + id + ", courseName=" + courseName + ", courseLength=" + courseLength
